@@ -1,0 +1,80 @@
+---
+// Importación de imágenes usando "astro:assets"
+import { Image } from "astro:assets";
+import astroLogo from "../../assets/pics/astro.svg";
+import reactLogo from "../../assets/pics/react-2.svg";
+import nextLogo from "../../assets/pics/next-js.svg";
+import tailwindLogo from "../../assets/pics/tailwind.svg";
+import typescriptLogo from "../../assets/pics/typescript.svg";
+
+
+const logos = [
+  { src: astroLogo, alt: "AstroJS Logo" },
+  { src: reactLogo, alt: "ReactJS Logo" },
+  { src: nextLogo, alt: "NextJS Logo" },
+  { src: tailwindLogo, alt: "TailwindCSS Logo" },
+  { src: typescriptLogo, alt: "TypeScript Logo" },
+];
+---
+
+<section
+  class="relative w-full text-center flex flex-col justify-center items-center gap-5 px-4 pt-20 pb-1 sm:pt-24 pointer-events-none"
+>
+  <p
+    class="w-full max-w-xl text-muted-foreground sm:text-center text-2xl font-medium tracking-tighter"
+  >
+    Top Technologies We Use Everyday
+  </p>
+
+  <div
+    class="w-full h-fit max-w-xl flex flex-col justify-center select-none overflow-hidden gradient"
+  >
+    <div class="w-max flex flex-nowrap gap-[4rem] animate-slide-logos">
+      {logos.concat(logos).map((logo) => (
+        <div class="aspect-square flex items-center justify-center size-20">
+          <Image
+            src={logo.src}
+            alt={logo.alt}
+            width={55}
+            height={55}
+            loading="eager"
+            class="object-contain"
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .gradient {
+    mask: linear-gradient(
+      90deg,
+      transparent,
+      black 20%,
+      black 80%,
+      transparent
+    );
+    -webkit-mask: linear-gradient(
+      90deg,
+      transparent,
+      black 20%,
+      black 80%,
+      transparent
+    );
+  }
+
+  .animate-slide-logos {
+    animation: slide 15s linear infinite;
+  }
+
+  @keyframes slide {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+</style>
+

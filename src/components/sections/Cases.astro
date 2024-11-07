@@ -1,0 +1,92 @@
+---
+import Section from "./Section.astro";
+import SectionTitle from "../ui/SectionTitle.astro";
+import { Image } from "astro:assets"; // Importa el componente Image de Astro
+
+// Importa las imágenes directamente desde la carpeta de assets
+import cointrackerImage from "../../assets/proyects/cripto.webp";
+import premolhouseImage from "../../assets/proyects/premolhouse-final.webp";
+import skyrunnerImage from "../../assets/proyects/skyrunner-final.webp";
+import abogadasImage from "../../assets/proyects/abogadas.webp";
+import tuviajeImage from "../../assets/proyects/tuviaje-ecomm.webp";
+
+const PROJECTS = [
+  {
+    title: "Cointracker - Landing page",
+    description:
+      "Biblioteca de logos SVG de las marcas más populares. +10k visitas al mes. +2K svgs descargados. Creado desde cero con Next.js, React y Tailwind CSS.",
+    link: "https://svgl.vercel.app/",
+    github: "https://github.com/pheralb/svgl",
+    image: cointrackerImage,  // Cambiamos .src por la referencia completa
+  },
+  {
+    title: "Premolhouse - Dynamic page",
+    description:
+      "Plataforma gratuita con retos de programación. Más de 1 millón de visitas en un mes. +50K retos completados. Creada desde cero con Next.js, React y Tailwind CSS.",
+    link: "https://svgl.vercel.app/",
+    github: "https://github.com/pheralb/svgl",
+    image: premolhouseImage,
+  },
+  {
+    title: "Aydabogadas - Landing page",
+    description:
+      "Plataforma gratuita con retos de programación. Más de 1 millón de visitas en un mes. +50K retos completados. Creada desde cero con Next.js, React y Tailwind CSS.",
+    link: "https://svgl.vercel.app/",
+    github: "https://github.com/pheralb/svgl",
+    image: abogadasImage,
+  },
+  {
+    title: "Tu viaje - Ecommerce",
+    description:
+      "Plataforma gratuita con retos de programación. Más de 1 millón de visitas en un mes. +50K retos completados. Creada desde cero con Next.js, React y Tailwind CSS.",
+    link: "https://svgl.vercel.app/",
+    github: "https://github.com/pheralb/svgl",
+    image: tuviajeImage,
+  },
+  {
+    title: "Skyrunner - Videogame made with Python",
+    description:
+      "Plataforma gratuita con retos de programación. Más de 1 millón de visitas en un mes. +50K retos completados. Creada desde cero con Next.js, React y Tailwind CSS.",
+    link: "https://svgl.vercel.app/",
+    github: "https://github.com/pheralb/svgl",
+    image: skyrunnerImage,
+  },
+];
+---
+
+<Section id="cases">
+  <SectionTitle
+    sectionTitle="Projects"
+    description="Explore Our Portfolio of Innovative Web Solutions"
+  />
+  <div class="flex flex-col gap-y-16">
+    {PROJECTS.map(({ image, title, description, link, github }) => (
+      <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
+        <div class="w-full md:w-1/2">
+          <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
+            <Image src={image} alt={title} class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105" />
+          </div>
+        </div>
+        
+        <div class="w-full md:w-1/2 md:max-w-lg">
+          <h3 class="text-2xl font-medium text-gray-800 dark:text-gray-800">
+            {title}
+          </h3>
+          <div class="mt-2 text-base text-gray-700 dark:text-gray-400">{description}</div>
+          <footer class="flex text-base items-end justify-start mt-4 gap-x-4">
+            {github && (
+              <a href={github} class="flex items-center text-blue-500 hover:underline">
+                <span>Code</span>
+              </a>
+            )}
+            {link && (
+              <a href={link} class="flex items-center text-blue-500 hover:underline">
+                <span>Deploy</span>
+              </a>
+            )}
+          </footer>
+        </div>
+      </article>
+    ))}
+  </div>
+</Section>

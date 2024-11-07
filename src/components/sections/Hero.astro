@@ -1,0 +1,29 @@
+---
+import { Image } from "astro:assets";
+import HeroIlust from "../../assets/pics/main-logo.svg";
+import Section from "./Section.astro";
+---
+
+<Section id="home">
+  <div
+    class="grid grid-cols-1 grid-template md:grid-cols-2 md:grid-rows-1 mt-[135px]"
+  >
+    <div class="flex flex-col w-full lg:w-[66.5%]">
+      <h1>Elevate your brand with our web development and SEO-focused services</h1>
+    </div>
+    <picture class="row-span-1 md:row-span-3">
+      <Image src={HeroIlust} alt="Hero Ilustration" loading="eager" />
+    </picture>
+    <div class="w-full lg:w-[66.5%]">
+      <p class="my-[35px]">
+        Our digital marketing agency drives business growth and online success through tailored services like SEO, pay-per-click (PPC), social media marketing, and high-quality content creation, ensuring visibility and engagement with your target audience.
+      </p>
+      <button class="btn-primary w-full md:w-auto">Book a meeting</button>
+    </div>
+  </div>
+</Section>
+<style>
+  .grid-template {
+    grid-template-rows: auto 1fr;
+  }
+</style>
