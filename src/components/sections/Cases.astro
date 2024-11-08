@@ -1,7 +1,8 @@
 ---
+// Importa el componente Image de Astro
 import Section from "./Section.astro";
 import SectionTitle from "../ui/SectionTitle.astro";
-import { Image } from "astro:assets"; // Importa el componente Image de Astro
+import { Image } from "astro:assets";
 
 // Importa las imágenes directamente desde la carpeta de assets
 import cointrackerImage from "../../assets/proyects/cripto.webp";
@@ -14,42 +15,47 @@ const PROJECTS = [
   {
     title: "Cointracker - Landing page",
     description:
-      "Biblioteca de logos SVG de las marcas más populares. +10k visitas al mes. +2K svgs descargados. Creado desde cero con Next.js, React y Tailwind CSS.",
+      "Introducing the project 'Cointracker', which allows tracking the value of the most well-known cryptocurrencies in real-time and keeping an eye on price changes of Bitcoin, Ethereum, Litecoin, Dogecoin, Tether, among others.",
     link: "https://svgl.vercel.app/",
     github: "https://github.com/pheralb/svgl",
-    image: cointrackerImage,  // Cambiamos .src por la referencia completa
+    image: cointrackerImage,
+    technologies: ["JavaScript", "React", "Node.js", "API Integration"],
   },
   {
     title: "Premolhouse - Dynamic page",
     description:
-      "Plataforma gratuita con retos de programación. Más de 1 millón de visitas en un mes. +50K retos completados. Creada desde cero con Next.js, React y Tailwind CSS.",
+      "This website is dedicated to the construction of prefabricated houses, offering a variety of models and styles to meet the needs of its clients.",
     link: "https://svgl.vercel.app/",
     github: "https://github.com/pheralb/svgl",
     image: premolhouseImage,
+    technologies: ["JavaScript", "Vue.js", "Tailwind CSS"],
   },
   {
     title: "Aydabogadas - Landing page",
     description:
-      "Plataforma gratuita con retos de programación. Más de 1 millón de visitas en un mes. +50K retos completados. Creada desde cero con Next.js, React y Tailwind CSS.",
+      "This is a website dedicated to a law firm, which was designed from scratch and completely customized. Users can learn about their practice areas and get to know the attorneys.",
     link: "https://svgl.vercel.app/",
     github: "https://github.com/pheralb/svgl",
     image: abogadasImage,
+    technologies: ["Wordpress"],
   },
   {
     title: "Tu viaje - Ecommerce",
     description:
-      "Plataforma gratuita con retos de programación. Más de 1 millón de visitas en un mes. +50K retos completados. Creada desde cero con Next.js, React y Tailwind CSS.",
+      "This flight booking web application showcases our expertise in DOM manipulation, Fetch-based data handling, and a custom-built shopping cart for an enhanced user experience.",
     link: "https://svgl.vercel.app/",
     github: "https://github.com/pheralb/svgl",
     image: tuviajeImage,
+    technologies: ["React", "Node.js", "CSS Modules"],
   },
   {
     title: "Skyrunner - Videogame made with Python",
     description:
-      "Plataforma gratuita con retos de programación. Más de 1 millón de visitas en un mes. +50K retos completados. Creada desde cero con Next.js, React y Tailwind CSS.",
+      "Run, jump, and shoot through unique levels, dodging obstacles and facing enemies to achieve the highest score. In 'Sky Runner', several important features have been implemented.",
     link: "https://svgl.vercel.app/",
     github: "https://github.com/pheralb/svgl",
     image: skyrunnerImage,
+    technologies: ["Python", "Pygame"],
   },
 ];
 ---
@@ -60,7 +66,7 @@ const PROJECTS = [
     description="Explore Our Portfolio of Innovative Web Solutions"
   />
   <div class="flex flex-col gap-y-16">
-    {PROJECTS.map(({ image, title, description, link, github }) => (
+    {PROJECTS.map(({ image, title, description, link, github, technologies }) => (
       <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
         <div class="w-full md:w-1/2">
           <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
@@ -73,6 +79,16 @@ const PROJECTS = [
             {title}
           </h3>
           <div class="mt-2 text-base text-gray-700 dark:text-gray-400">{description}</div>
+
+          <!-- Renderiza las "pastillas" de tecnologías aquí -->
+          <ul class="flex gap-2 flex-wrap text-sm mt-4">
+            {technologies.map(tech => (
+              <li class="rounded-full px-3 py-1 border border-gray-200 dark:border-gray-200 bg-[var(--green)] backdrop-blur-sm text-white dark:text-white">
+                {tech}
+              </li>
+            ))}
+          </ul>
+
           <footer class="flex text-base items-end justify-start mt-4 gap-x-4">
             {github && (
               <a href={github} class="flex items-center text-blue-500 hover:underline">
@@ -90,3 +106,4 @@ const PROJECTS = [
     ))}
   </div>
 </Section>
+
