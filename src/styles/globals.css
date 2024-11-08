@@ -98,7 +98,7 @@
     }
 
     .btn-secondary {
-      @apply bg-transparent text-black px-[35px] py-5 rounded-lg border border-solid border-black transition-all duration-200;
+      @apply bg-transparent text-black px-[20px] py-2 rounded-lg border border-solid border-black transition-all duration-200;
     }
     .btn-secondary:hover {
       @apply bg-black text-white border-green transform scale-105;
