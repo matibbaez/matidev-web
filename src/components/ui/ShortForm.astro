@@ -1,3 +1,29 @@
+---
+import { Image } from "astro:assets";
+---
+
+<style>
+  .notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #3e9bff;
+    color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: translateY(20px);
+    z-index: 1000;
+  }
+
+  .notification.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
 <form
   class="bg-[#292A32] px-10 py-14 rounded-[14px] gap-5 h-full flex flex-col sm:flex-row items-center justify-center"
 >
@@ -6,11 +32,53 @@
       type="text"
       id="email"
       name="email"
-      placeholder="Email"
+      value="info@matiasbaez.com"
+      readonly
       class="bg-transparent w-full px-[35px] py-5 border rounded-[14px] focus:outline-none"
     />
   </div>
-  <button type="submit" name="submit" class="w-full sm:w-[45%] btn-tertiary"
-    >Talk with us</button
-  >
+  <button type="button" name="submit" class="w-full sm:w-[45%] btn-tertiary" id="copyButton">
+    Copy email
+  </button>
 </form>
+
+<!-- Contenedor para la notificación -->
+<div id="notification" class="notification">Email copied to clipboard</div>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const copyButton = document.getElementById("copyButton");
+    const notification = document.getElementById("notification");
+
+    copyButton?.addEventListener("click", () => {
+      const emailField = document.getElementById("email");
+      if (emailField) {
+        // Create a temporary textarea element to copy the text
+        const tempTextArea = document.createElement('textarea');
+        tempTextArea.value = emailField.value;
+        document.body.appendChild(tempTextArea);
+        tempTextArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempTextArea);
+
+        showNotification("Email copied to clipboard", "success");
+      }
+    });
+
+    function showNotification(message, type) {
+      notification.textContent = message;
+      notification.style.backgroundColor = type === "error" ? "#f44336" : "#3e9bff";
+      notification.classList.add("show");
+
+      setTimeout(() => {
+        notification.classList.remove("show");
+      }, 3000);
+    }
+  });
+</script>
+
+
+
+
+
+

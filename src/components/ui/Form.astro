@@ -6,6 +6,11 @@ import decorForm from "../../assets/pics/contact-pic.png";
 <div
   class="flex relative justify-start items-center p-[60px] bg-[#F3F3F3] rounded-[45px] overflow-hidden"
 >
+  <!-- Notificación de error -->
+  <div id="notification" class="hidden fixed top-5 left-1/2 transform -translate-x-1/2 p-4 bg-red-500 text-white rounded-lg shadow-lg z-10">
+    <p id="notificationText"></p>
+  </div>
+
   <form id="contactForm" class="bg-white sm:p-6 h-full w-full lg:max-w-lg">
     <div class="flex flex-col sm:flex-row gap-[35px] sm:items-center mb-10">
       <div class="flex items-center gap-[14px]">
@@ -65,7 +70,7 @@ import decorForm from "../../assets/pics/contact-pic.png";
       ></textarea>
     </div>
 
-    <button type="button" name="submit" class="btn-primary w-full" onclick="sendMail()">Send</button>
+    <button type="button" name="submit" class="btn-primary w-full" id="sendButton">Send</button>
   </form>
   <picture class="absolute right-[-25%] top-[2%] bottom-[2%] hidden lg:block">
     <Image src={decorForm} alt="decor" />
@@ -100,50 +105,120 @@ import decorForm from "../../assets/pics/contact-pic.png";
   .form-checkbox:checked:before {
     transform: scale(0.6);
   }
+
+  #notification {
+    display: none;
+    position: fixed;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 16px;
+    background-color: #f44336; /* Rojo */
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+  }
+
+  #notification.show {
+    display: block;
+  }
+
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+  }
 </style>
 <script>
   function formSetup() {
-    const cb1 = document.getElementById("checkbox1") as HTMLInputElement;
-    const cb2 = document.getElementById("checkbox2") as HTMLInputElement;
-    const message = document.getElementById("message") as HTMLTextAreaElement;
+    const cb1 = document.getElementById("checkbox1") as HTMLInputElement | null;
+    const cb2 = document.getElementById("checkbox2") as HTMLInputElement | null;
+    const message = document.getElementById("message") as HTMLTextAreaElement | null;
 
-    if (cb1 && cb2) {
+    if (cb1 && cb2 && message) {
       cb1.checked = true;
 
       cb2.addEventListener("change", function () {
         if (cb2.checked) {
           cb1.checked = false;
-          message.value =
-            "We're interested in your services! Please contact us";
+          message.value = "We're interested in your services! Please contact us";
         } else {
           message.value = "";
           cb1.checked = true;
         }
       });
+
       cb1.addEventListener("change", function () {
         if (cb1.checked) {
           cb2.checked = false;
           message.value = "";
         } else {
           cb2.checked = true;
-          message.value =
-            "We're interested in your services! Please contact us";
+          message.value = "We're interested in your services! Please contact us";
         }
       });
     }
   }
 
-  function sendMail() {
-    const name = (document.getElementById('name') as HTMLInputElement).value;
-    const email = (document.getElementById('email') as HTMLInputElement).value;
-    const message = (document.getElementById('message') as HTMLTextAreaElement).value;
+  function showNotification(message: string) {
+    const notification = document.getElementById("notification");
+    const notificationText = document.getElementById("notificationText");
 
-    const subject = encodeURIComponent('Contact Form Submission');
-    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nMessage: ${message}`);
+    if (notification && notificationText) {
+      notificationText.textContent = message;
+      notification.classList.add("show");
+
+      setTimeout(() => {
+        notification.classList.remove("show");
+      }, 3000); // La notificación se oculta después de 3 segundos
+    }
+  }
+
+
+  function sendMail() {
+    const name = (document.getElementById("name") as HTMLInputElement | null)?.value;
+    const email = (document.getElementById("email") as HTMLInputElement | null)?.value;
+    const message = (document.getElementById("message") as HTMLTextAreaElement | null)?.value;
+
+    if (!name || !email || !message) {
+      showNotification("Please fill out all fields.");
+      return;
+    }
+
+    if (!email.includes("@")) {
+      showNotification("Please enter a valid email address.");
+      return;
+    }
+
+    const subject = encodeURIComponent("New Inquiry from Matidev");
+    const body = encodeURIComponent(`Name: ${name}\nMessage: ${message}`);
 
     window.location.href = `mailto:info@matiasbaez.com?subject=${subject}&body=${body}`;
   }
 
-  formSetup();
-  document.addEventListener("astro:after-swap", formSetup);
+  document.addEventListener("DOMContentLoaded", () => {
+    formSetup();
+    const sendButton = document.getElementById("sendButton");
+    if (sendButton) {
+      sendButton.addEventListener("click", sendMail);
+    }
+  });
 </script>
