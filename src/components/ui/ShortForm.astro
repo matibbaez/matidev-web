@@ -2,36 +2,14 @@
 import { Image } from "astro:assets";
 ---
 
-<style>
-  .notification {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #3e9bff;
-    color: #fff;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    opacity: 0;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    transform: translateY(20px);
-    z-index: 1000;
-  }
-
-  .notification.show {
-    opacity: 1;
-    transform: translateY(0);
-  }
-</style>
-
 <form
   class="bg-[#292A32] px-10 py-14 rounded-[14px] gap-5 h-full flex flex-col sm:flex-row items-center justify-center"
 >
   <div class="w-full sm:w-[55%]">
     <input
       type="text"
-      id="email"
-      name="email"
+      id="emailCopy"
+      name="emailCopy"
       value="info@matiasbaez.com"
       readonly
       class="bg-transparent w-full px-[35px] py-5 border rounded-[14px] focus:outline-none"
@@ -51,7 +29,7 @@ import { Image } from "astro:assets";
     const notification = document.getElementById("notification");
 
     copyButton?.addEventListener("click", () => {
-      const emailField = document.getElementById("email");
+      const emailField = document.getElementById("emailCopy");
       if (emailField) {
         // Create a temporary textarea element to copy the text
         const tempTextArea = document.createElement('textarea');
@@ -76,9 +54,3 @@ import { Image } from "astro:assets";
     }
   });
 </script>
-
-
-
-
-
-

@@ -16,8 +16,7 @@ const PROJECTS = [
     title: "Cointracker - Landing page",
     description:
       "Introducing the project 'Cointracker', which allows tracking the value of the most well-known cryptocurrencies in real-time and keeping an eye on price changes of Bitcoin, Ethereum, Litecoin, Dogecoin, Tether, among others.",
-    link: "https://svgl.vercel.app/",
-    github: "https://github.com/pheralb/svgl",
+    link: "https://landing-crypto.vercel.app/",
     image: cointrackerImage,
     technologies: ["JavaScript", "React", "Node.js", "API Integration"],
   },
@@ -25,8 +24,7 @@ const PROJECTS = [
     title: "Premolhouse - Dynamic page",
     description:
       "This website is dedicated to the construction of prefabricated houses, offering a variety of models and styles to meet the needs of its clients.",
-    link: "https://svgl.vercel.app/",
-    github: "https://github.com/pheralb/svgl",
+    link: "https://premolhouse.com/",
     image: premolhouseImage,
     technologies: ["JavaScript", "Vue.js", "Tailwind CSS"],
   },
@@ -34,8 +32,7 @@ const PROJECTS = [
     title: "Aydabogadas - Landing page",
     description:
       "This is a website dedicated to a law firm, which was designed from scratch and completely customized. Users can learn about their practice areas and get to know the attorneys.",
-    link: "https://svgl.vercel.app/",
-    github: "https://github.com/pheralb/svgl",
+    link: "https://aydabogadas.com/",
     image: abogadasImage,
     technologies: ["Wordpress"],
   },
@@ -43,8 +40,8 @@ const PROJECTS = [
     title: "Tu viaje - Ecommerce",
     description:
       "This flight booking web application showcases our expertise in DOM manipulation, Fetch-based data handling, and a custom-built shopping cart for an enhanced user experience.",
-    link: "https://svgl.vercel.app/",
-    github: "https://github.com/pheralb/svgl",
+    link: "https://entrega-final-coder-eight.vercel.app/",
+    github: "https://github.com/matibbaez/entregaFinalCoder",
     image: tuviajeImage,
     technologies: ["React", "Node.js", "CSS Modules"],
   },
@@ -52,8 +49,8 @@ const PROJECTS = [
     title: "Skyrunner - Videogame made with Python",
     description:
       "Run, jump, and shoot through unique levels, dodging obstacles and facing enemies to achieve the highest score. In 'Sky Runner', several important features have been implemented.",
-    link: "https://svgl.vercel.app/",
-    github: "https://github.com/pheralb/svgl",
+    gameplay: "https://youtu.be/SBz8_hA5Buc?si=mNlewsQPLAt6NWod",
+    github: "https://github.com/matibbaez/skyRunner",
     image: skyrunnerImage,
     technologies: ["Python", "Pygame"],
   },
@@ -66,7 +63,7 @@ const PROJECTS = [
     description="Explore Our Portfolio of Innovative Web Solutions"
   />
   <div class="flex flex-col gap-y-16">
-    {PROJECTS.map(({ image, title, description, link, github, technologies }) => (
+    {PROJECTS.map(({ image, title, description, link, github, gameplay, technologies }) => (
       <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
         <div class="w-full md:w-1/2">
           <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
@@ -98,6 +95,11 @@ const PROJECTS = [
             {link && (
               <a href={link} class="flex items-center text-blue-500 hover:underline">
                 <span>Deploy</span>
+              </a>
+            )}
+            {gameplay && (
+              <a href={gameplay} class="flex items-center text-blue-500 hover:underline">
+                <span>Gameplay</span>
               </a>
             )}
           </footer>
