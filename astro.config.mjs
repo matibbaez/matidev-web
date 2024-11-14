@@ -4,6 +4,6 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://master--kreatif-software.netlify.app",
+  site: "https://matidev-web.vercel.app/",
   integrations: [tailwind({ configFile: "./tailwind.config.mjs" })],
 });
