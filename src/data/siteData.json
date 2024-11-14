@@ -1,8 +1,8 @@
 {
-  "title": "Servicios de diseño y desarrollo de aplicaciones web",
-  "description": "Este sitio web es un portafolio de servicios de diseño y desarrollo de aplicaciones web. Aquí encontrarás información sobre los servicios que ofrecemos, los proyectos en los que hemos trabajado y cómo puedes contactarnos.",
+  "title": "Design and Web Development Services",
+  "description": "This website is a portfolio showcasing our web design and development services. Here you will find information about the services we offer, the projects we have worked on, and how you can contact us.",
   "image": {
-    "src": "https://master--kreatif-software.netlify.app/og.png",
-    "alt": "Imagen del logo de Kreatif Software"
+    "src": "/og2.png",
+    "alt": "Matidev website"
   }
 }
